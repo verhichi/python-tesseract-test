@@ -14,3 +14,11 @@ Just practicing OCR with pytesseract
 1. Install tesseract
    - install location: `E:\Tesseract-OCR`
    - additional options: `Japanese` (did not get Japanese vertical)
+
+## Developers
+
+Install dependencies
+
+```sh
+$ pip install r requirements.txt
+```

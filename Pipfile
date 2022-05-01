@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyparsing = "==3.0.8"
+pytesseract = "==0.3.9"
+Pillow = "==9.1.0"
+
+[dev-packages]
+python-dotenv = "*"
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+start01 = 'py ./01_test/main.py'

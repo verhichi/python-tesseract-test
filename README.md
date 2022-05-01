@@ -11,14 +11,23 @@ Just practicing OCR with pytesseract
 ## Installation Process
 
 1. Download tesseract installer for windows(https://github.com/UB-Mannheim/tesseract/wiki)
-1. Install tesseract
+1. Install tesseract(the following is the option I set, which may differ from yours)
    - install location: `E:\Tesseract-OCR`
    - additional options: `Japanese` (did not get Japanese vertical)
 
 ## Developers
 
-Install dependencies
+### Install Dependencies
 
 ```sh
-$ pip install r requirements.txt
+$ pipenv install
+```
+
+### Environment Variables
+
+Set the following environment variable for the code to work correctly
+
+```sh
+# Apparently pytesseract tries to get tesseract.exe from a predefined path, and if you placed it somewhere else, the code will result in an error unless you define it like so
+PYTESSERACT_PATH=C:\your\path\to\Tesseract-OCR\tesseract.exe
 ```

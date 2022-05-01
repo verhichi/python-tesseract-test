@@ -5,7 +5,7 @@ Just practicing OCR with pytesseract
 ## My Environment
 
 - Windows 10 Home
-- Python 3.7.4
+- Python 3.10.4
 - Tesseract 5.0.1
 
 ## Installation Process

@@ -19,3 +19,4 @@ python_version = "3.10"
 [scripts]
 start01 = 'py ./01_test/main.py'
 start02 = 'py ./02_image_preprocessing/main.py'
+start03 = 'py ./03_game_image/main.py'

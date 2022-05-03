@@ -6,8 +6,8 @@ Just practicing OCR with pytesseract
 
 - Windows 10 Home
 - Python 3.10.4
-- Tesseract 4.1.0 (win32)
-  - **Using version 4.1.0 because training data commands were not compatible with v5**
+- Tesseract 4.1.0(win32)
+  - **Using version 4.1.0 win32 because training data commands were not compatible with v5 or 4.1.0(win64)**
 
 ## Installation Process
 

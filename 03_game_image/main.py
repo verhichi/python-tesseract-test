@@ -1,10 +1,8 @@
 import pytesseract
-from PIL import Image
 from pathlib import Path
 import os
 from dotenv import load_dotenv
 import cv2
-import numpy as np
 from math import floor
 
 # setup

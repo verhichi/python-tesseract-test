@@ -12,11 +12,15 @@ numpy = "*"
 
 [dev-packages]
 python-dotenv = "*"
+pep8 = "*"
+autopep8 = "*"
 
 [requires]
 python_version = "3.10"
 
 [scripts]
+lint = 'autopep8 --in-place -r --aggressive src'
 start01 = 'py ./01_test/main.py'
 start02 = 'py ./02_image_preprocessing/main.py'
 start03 = 'py ./03_game_image/main.py'
+start04 = 'py ./04_game_video/main.py'

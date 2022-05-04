@@ -37,8 +37,8 @@ h = floor(base_h / mh)
 
 # go down each segment
 for n in range(5):
-    new_y = y + (n*h)
-    roi = resized_image[new_y:new_y+h,x:x+w]
+    new_y = y + (n * h)
+    roi = resized_image[new_y:new_y + h, x:x + w]
 
     roi_name = roi[20:70, 50:270]
     ret, roi_name_th = cv2.threshold(roi_name, 150, 255, cv2.THRESH_BINARY)
@@ -48,8 +48,10 @@ for n in range(5):
 
     cv2.imshow(f'image_name_{n}', roi_name_th)
     cv2.imshow(f'image_stat_{n}', roi_stat_th)
-    name = pytesseract.image_to_string(roi_name_th, lang=OCR_LANG, config=CONFIG)
-    stat = pytesseract.image_to_string(roi_stat_th, lang=OCR_LANG, config=CONFIG)
+    name = pytesseract.image_to_string(
+        roi_name_th, lang=OCR_LANG, config=CONFIG)
+    stat = pytesseract.image_to_string(
+        roi_stat_th, lang=OCR_LANG, config=CONFIG)
     print(f'image_name_{n}')
     print(name)
     print('---')

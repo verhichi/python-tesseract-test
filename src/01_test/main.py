@@ -14,6 +14,6 @@ INPUT_IMAGE_PATH = BASE_PATH / 'image/test1.jpg'
 OCR_LANG = 'jpn'
 
 # run command
-text = pytesseract.image_to_string(Image.open(INPUT_IMAGE_PATH),lang=OCR_LANG)
+text = pytesseract.image_to_string(Image.open(INPUT_IMAGE_PATH), lang=OCR_LANG)
 
 print(text)

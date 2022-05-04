@@ -20,7 +20,8 @@ python_version = "3.10"
 
 [scripts]
 lint = 'autopep8 --in-place -r --aggressive src'
-start01 = 'py ./01_test/main.py'
-start02 = 'py ./02_image_preprocessing/main.py'
-start03 = 'py ./03_game_image/main.py'
-start04 = 'py ./04_game_video/main.py'
+start01 = 'py ./src/01_test/main.py'
+start02 = 'py ./src/02_image_preprocessing/main.py'
+start03 = 'py ./src/03_game_image/main.py'
+start04 = 'py ./src/04_game_video/main.py'
+start05 = 'py ./src/05_template_recognition/main.py'

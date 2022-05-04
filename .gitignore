@@ -1,3 +1,4 @@
 .env
-src/04_game_video/image
-src/04_game_video/video
+src/**/*.png
+src/**/*.jpg
+src/**/*.mp4

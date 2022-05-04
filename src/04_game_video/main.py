@@ -9,6 +9,7 @@ OUTPUT_IMAGE_PATH = BASE_PATH / 'image'
 INPUT_VIDEO_PATH_STRING = str(INPUT_VIDEO_PATH)
 OUTPUT_IMAGE_PATH_STRING = str(OUTPUT_IMAGE_PATH)
 
+
 def save_frames(video_path: str, frame_dir: str,
                 name="image", ext="jpg"):
     cap = cv2.VideoCapture(video_path)

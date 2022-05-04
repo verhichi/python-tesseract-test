@@ -13,19 +13,12 @@ pytesseract.pytesseract.tesseract_cmd = os.getenv('PYTESSERACT_PATH')
 
 # initialize variables
 BASE_PATH = Path(__file__).parent
-INPUT_IMAGE_PATH = BASE_PATH / 'image/test1.png'
+INPUT_IMAGE_PATH = BASE_PATH / 'image/test2.png'
 INPUT_IMAGE_PATH_STRING = str(INPUT_IMAGE_PATH)
-OCR_LANG = 'jpn'
+OCR_LANG = 'eng'
+CONFIG = '--psm 7 -c tessedit_char_whitelist=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%'
 
-base_image = cv2.imread(INPUT_IMAGE_PATH_STRING)
-
-# Preprocess Image
-# # resize image to fixed size
-# resized_image = cv2.resize(base_image, (640, 360))
-
-# # initial area
-# x,y,w,h = 20,70,500,50
-
+base_image = cv2.imread(INPUT_IMAGE_PATH_STRING, cv2.IMREAD_GRAYSCALE)
 
 # resize image to fixed size
 base_w = 1920
@@ -48,13 +41,23 @@ h = floor(base_h / mh)
 for n in range(5):
     new_y = y + (n*h)
     roi = resized_image[new_y:new_y+h,x:x+w]
-    grey_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    _, thresholded_image =  cv2.threshold(grey_roi,175,255,cv2.THRESH_BINARY)
-    cv2.imshow(f'image{n}', thresholded_image)
-    text = pytesseract.image_to_string(thresholded_image, lang=OCR_LANG)
-    print(f'image{n}')
-    print(text)
+
+    roi_name = roi[20:70, 50:270]
+    ret, roi_name_th = cv2.threshold(roi_name, 150, 255, cv2.THRESH_BINARY)
+
+    roi_stat = roi[70:130, 340:710]
+    ret, roi_stat_th = cv2.threshold(roi_stat, 190, 255, cv2.THRESH_BINARY)
+
+    cv2.imshow(f'image_name_{n}', roi_name_th)
+    cv2.imshow(f'image_stat_{n}', roi_stat_th)
+    name = pytesseract.image_to_string(roi_name_th, lang=OCR_LANG, config=CONFIG)
+    stat = pytesseract.image_to_string(roi_stat_th, lang=OCR_LANG, config=CONFIG)
+    print(f'image_name_{n}')
+    print(name)
     print('---')
+    print(f'image_stat_{n}')
+    print(stat)
+    print('===')
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

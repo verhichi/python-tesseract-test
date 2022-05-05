@@ -26,3 +26,5 @@ start03 = 'py ./src/03_game_image/main.py'
 start04 = 'py ./src/04_game_video/main.py'
 start05 = 'py ./src/05_template_recognition/main.py'
 start06 = 'py ./src/06_game_video_template_recognition/main.py'
+start07 = 'py ./src/07_extracted_text_formatting/main.py'
+

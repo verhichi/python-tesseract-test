@@ -79,7 +79,8 @@ with open(f'{OUTPUT_CSV_DIR_PATH}/{CURRENT_DATETIME}.csv', 'a', encoding='UTF8')
                 roi_stat_th, lang=OCR_LANG, config=CONFIG).strip()
 
             print('Checking for closest name')
-            closest_match_name_list = difflib.get_close_matches(name, PLAYER_NAMES, 1)
+            closest_match_name_list = difflib.get_close_matches(
+                name, PLAYER_NAMES, 1)
 
             if (not closest_match_name_list):
                 print('Did not match any names -> continue')

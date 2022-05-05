@@ -24,8 +24,8 @@ basicConfig(format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
             datefmt='%H:%M:%S',
             level=DEBUG,
             handlers=[
-              FileHandler(LOGGING_OUTPUT_PATH),
-              StreamHandler(sys.stdout)
+                FileHandler(LOGGING_OUTPUT_PATH),
+                StreamHandler(sys.stdout)
             ])
 logger = getLogger(__name__)
 
@@ -34,7 +34,6 @@ load_dotenv()
 pytesseract.pytesseract.tesseract_cmd = os.getenv('PYTESSERACT_PATH')
 
 # initialize variables
-BASE_PATH = Path(__file__).parent
 INPUT_VIDEO_PATH = str(BASE_PATH / 'video/test.mp4')
 OUTPUT_CSV_DIR_PATH = str(BASE_PATH / 'data')
 OCR_LANG = 'eng'
@@ -44,45 +43,65 @@ CURRENT_DATETIME = datetime.now().strftime("%Y%m%d_%H%M%S")
 STAT_REGEXP_PATTERN = '^(\\d{3})%[ABCDEFGS](\\d{2}|100)[ABCDEFGS](\\d{2}|100)$'
 
 PLAYER_NAMES = ['Sybil', 'Bruno', 'Wilson']
-FIELDS_NAMES = ['id', 'date', 'iteration', 'name', 'pitching_speed', 'control', 'stamina']
+FIELDS_NAMES = [
+    'id',
+    'date',
+    'iteration',
+    'name',
+    'pitching_speed',
+    'control',
+    'stamina']
 PLAYER_DATE_STAT_ITERATION = {
-  'Sybil': {},
-  'Bruno': {},
-  'Wilson': {}
+    'Sybil': {},
+    'Bruno': {},
+    'Wilson': {}
 }
 uuid_set = set()
 
 THRESHOLD = 0.9
 MAX_PLAYERS_IN_STAT_SCREEN = 5
 
-STAT_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/stat.jpg'), cv2.IMREAD_GRAYSCALE)
+STAT_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/stat.jpg'), cv2.IMREAD_GRAYSCALE)
 
-JANUARY_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/january.jpg'), cv2.IMREAD_GRAYSCALE)
-FEBRUARY_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/february.jpg'), cv2.IMREAD_GRAYSCALE)
-MARCH_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/march.jpg'), cv2.IMREAD_GRAYSCALE)
-APRIL_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/april.jpg'), cv2.IMREAD_GRAYSCALE)
-MAY_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/may.jpg'), cv2.IMREAD_GRAYSCALE)
-JUNE_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/june.jpg'), cv2.IMREAD_GRAYSCALE)
-JULY_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/july.jpg'), cv2.IMREAD_GRAYSCALE)
-AUGUST_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/august.jpg'), cv2.IMREAD_GRAYSCALE)
-SEPTEMBER_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/september.jpg'), cv2.IMREAD_GRAYSCALE)
-OCTOBER_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/october.jpg'), cv2.IMREAD_GRAYSCALE)
-NOVEMBER_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/november.jpg'), cv2.IMREAD_GRAYSCALE)
-DECEMBER_TEMPLATE_IMAGE = cv2.imread(str(BASE_PATH / 'template/december.jpg'), cv2.IMREAD_GRAYSCALE)
+JANUARY_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/january.jpg'), cv2.IMREAD_GRAYSCALE)
+FEBRUARY_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/february.jpg'), cv2.IMREAD_GRAYSCALE)
+MARCH_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/march.jpg'), cv2.IMREAD_GRAYSCALE)
+APRIL_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/april.jpg'), cv2.IMREAD_GRAYSCALE)
+MAY_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/may.jpg'), cv2.IMREAD_GRAYSCALE)
+JUNE_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/june.jpg'), cv2.IMREAD_GRAYSCALE)
+JULY_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/july.jpg'), cv2.IMREAD_GRAYSCALE)
+AUGUST_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/august.jpg'), cv2.IMREAD_GRAYSCALE)
+SEPTEMBER_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/september.jpg'), cv2.IMREAD_GRAYSCALE)
+OCTOBER_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/october.jpg'), cv2.IMREAD_GRAYSCALE)
+NOVEMBER_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/november.jpg'), cv2.IMREAD_GRAYSCALE)
+DECEMBER_TEMPLATE_IMAGE = cv2.imread(
+    str(BASE_PATH / 'template/december.jpg'), cv2.IMREAD_GRAYSCALE)
 
 TEMPLATE_IMAGE_LIST = [
-  JANUARY_TEMPLATE_IMAGE,
-  FEBRUARY_TEMPLATE_IMAGE,
-  MARCH_TEMPLATE_IMAGE,
-  APRIL_TEMPLATE_IMAGE,
-  MAY_TEMPLATE_IMAGE,
-  JUNE_TEMPLATE_IMAGE,
-  JULY_TEMPLATE_IMAGE,
-  AUGUST_TEMPLATE_IMAGE,
-  SEPTEMBER_TEMPLATE_IMAGE,
-  OCTOBER_TEMPLATE_IMAGE,
-  NOVEMBER_TEMPLATE_IMAGE,
-  DECEMBER_TEMPLATE_IMAGE,
+    JANUARY_TEMPLATE_IMAGE,
+    FEBRUARY_TEMPLATE_IMAGE,
+    MARCH_TEMPLATE_IMAGE,
+    APRIL_TEMPLATE_IMAGE,
+    MAY_TEMPLATE_IMAGE,
+    JUNE_TEMPLATE_IMAGE,
+    JULY_TEMPLATE_IMAGE,
+    AUGUST_TEMPLATE_IMAGE,
+    SEPTEMBER_TEMPLATE_IMAGE,
+    OCTOBER_TEMPLATE_IMAGE,
+    NOVEMBER_TEMPLATE_IMAGE,
+    DECEMBER_TEMPLATE_IMAGE,
 ]
 
 NEW_YEAR_MONTH_NUM = 1
@@ -103,8 +122,12 @@ y = floor(base_h / my)
 w = floor(base_w / mw)
 h = floor(base_h / mh)
 
+
 def match_stat_template(image):
-    result = cv2.matchTemplate(image, STAT_TEMPLATE_IMAGE, cv2.TM_CCOEFF_NORMED)
+    result = cv2.matchTemplate(
+        image,
+        STAT_TEMPLATE_IMAGE,
+        cv2.TM_CCOEFF_NORMED)
     (_minVal, _maxVal, _minLoc, maxLoc) = cv2.minMaxLoc(result)
     (_, startY) = maxLoc
 
@@ -124,7 +147,7 @@ def match_month_template(image, threshold):
         if (maxVal >= threshold):
             matched_month_num = str(idx + 1).zfill(2)
             break
-    
+
     return matched_month_num
 
 
@@ -148,8 +171,9 @@ def get_stat_from_image(image, year, month):
             roi_stat_th, lang=OCR_LANG, config=CONFIG).strip()
 
         logger.debug('Checking for closest name')
-        closest_match_name_list = difflib.get_close_matches(name, PLAYER_NAMES, 1)
-        
+        closest_match_name_list = difflib.get_close_matches(
+            name, PLAYER_NAMES, 1)
+
         if (not closest_match_name_list):
             logger.debug('Did not match any names -> continue')
             continue
@@ -179,17 +203,17 @@ def get_stat_from_image(image, year, month):
             PLAYER_DATE_STAT_ITERATION[closest_match_name][year_month] = 1
 
         data_dict = {
-                'id': id,
-                'date': year_month,
-                'iteration': PLAYER_DATE_STAT_ITERATION[closest_match_name][year_month],
-                'name': closest_match_name,
-                'pitching_speed': pitching_speed,
-                'control': control,
-                'stamina': stamina}
+            'id': id,
+            'date': year_month,
+            'iteration': PLAYER_DATE_STAT_ITERATION[closest_match_name][year_month],
+            'name': closest_match_name,
+            'pitching_speed': pitching_speed,
+            'control': control,
+            'stamina': stamina}
 
         uuid_set.add(id)
         data_list.append(data_dict)
-    
+
     return data_list
 
 
@@ -226,7 +250,8 @@ def main(video_path: str, START_YEAR: int, START_MONTH_NUM: int):
 
                     if (match_stat_template(frame)):
                         logger.debug('Stat Template Matched: TRUE')
-                        frame_data_list = get_stat_from_image(frame, CURRENT_YEAR, CURRENT_MONTH_NUM)
+                        frame_data_list = get_stat_from_image(
+                            frame, CURRENT_YEAR, CURRENT_MONTH_NUM)
                         for frame_data in frame_data_list:
                             writer.writerow(frame_data)
                         idx = 0

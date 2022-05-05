@@ -38,9 +38,9 @@ def save_frames(video_path: str, frame_dir: str, name="image", ext="jpg"):
                 filled_second = str(second).zfill(8)
 
                 result = cv2.matchTemplate(
-                  frame,
-                  TEMPLATE_IMAGE,
-                  cv2.TM_CCOEFF_NORMED)
+                    frame,
+                    TEMPLATE_IMAGE,
+                    cv2.TM_CCOEFF_NORMED)
 
                 (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(result)
                 (startX, startY) = maxLoc
@@ -50,11 +50,18 @@ def save_frames(video_path: str, frame_dir: str, name="image", ext="jpg"):
                     endX = startX + TEMPLATE_IMAGE.shape[1]
                     endY = startY + TEMPLATE_IMAGE.shape[0]
 
-                    cv2.rectangle(frame, (startX, startY), (endX, endY), (255, 0, 0), 3)
-                    cv2.imwrite("{}_{}.{}".format(base_path, filled_second, ext), frame)
+                    cv2.rectangle(
+                        frame, (startX, startY), (endX, endY), (255, 0, 0), 3)
+                    cv2.imwrite(
+                        "{}_{}.{}".format(
+                            base_path,
+                            filled_second,
+                            ext),
+                        frame)
                 idx = 0
         else:
             break
+
 
 start = time.process_time()
 print('START')

@@ -28,4 +28,5 @@ start05 = 'py ./src/05_template_recognition/main.py'
 start06 = 'py ./src/06_game_video_template_recognition/main.py'
 start07 = 'py ./src/07_extracted_text_formatting/main.py'
 start08 = 'py ./src/08_multiple_template_recognition/main.py'
+start09 = 'py ./src/09_game_video_multiple_template_recognition_text_formatting/main.py'
 

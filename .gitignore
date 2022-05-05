@@ -3,3 +3,4 @@ src/**/*.png
 src/**/*.jpg
 src/**/*.mp4
 src/**/*.csv
+src/**/*.log

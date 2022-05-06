@@ -1,6 +1,7 @@
 # My TESSERACT PRACTICE
 
-Just practicing OCR with pytesseract
+Just practicing OCR with pytesseract  
+**Input Image and Video are not included in this repository, sorry**
 
 ## What I Tested Out
 
@@ -53,5 +54,3 @@ or you can just create a '.env' file in project root directory
 # Apparently pytesseract tries to get tesseract.exe from a predefined path, and if you placed it somewhere else, the code will result in an error unless you define it like so
 PYTESSERACT_PATH=C:\your\path\to\Tesseract-OCR\tesseract.exe
 ```
-
-### Run

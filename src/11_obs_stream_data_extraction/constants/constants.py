@@ -22,14 +22,12 @@ MONTH_MATCH_THRESHOLD = 0.9
 MAX_PLAYERS_IN_STAT_SCREEN = 5
 STAT_REGEXP_PATTERN = '^(\\d{3})%[ABCDEFGS](\\d{2}|100)[ABCDEFGS](\\d{2}|100)$'
 
-PLAYER_NAMES = ['Sybil', 'Bruno', 'Lisa', 'John', 'Carl', 'Daisy', 'Edmond', 'Vivian']
-PLAYER_DATE_STAT_ITERATION = dict((name, {}) for name in PLAYER_NAMES)
+PLAYER_NAMES = ['Arin', 'Brian', 'Carl', 'David', 'Edmond', 'Floyd', 'Gabe', 'Henry', 'Ivan']
 
 # OUTPUT CSV
 FIELD_NAMES = [
     'id',
     'date',
-    'iteration',
     'name',
     'pitching_speed',
     'control',

@@ -77,10 +77,11 @@ def main(START_YEAR: int, START_MONTH_NUM: int):
             else:
                 break
 
+        cap.release()
 
 start = time.process_time()
 logger.debug('START')
-main(2028, 8)
+main(2030, 8)
 end = time.process_time() - start
 logger.debug('END')
 logger.debug(f'Process took: {end} seconds')

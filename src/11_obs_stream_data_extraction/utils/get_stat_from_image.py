@@ -1,6 +1,6 @@
 import pytesseract
 import cv2
-from constants.constants import PLAYER_NAMES, PLAYER_DATE_STAT_ITERATION, STAT_REGEXP_PATTERN, MAX_PLAYERS_IN_STAT_SCREEN, TESSERACT_LANG, TESSERACT_CONFIG
+from constants.constants import PLAYER_NAMES, STAT_REGEXP_PATTERN, MAX_PLAYERS_IN_STAT_SCREEN, TESSERACT_LANG, TESSERACT_CONFIG
 import difflib
 from logging import getLogger
 from math import floor
@@ -65,21 +65,15 @@ def get_stat_from_image(image, year, month, uuid_set):
 
         (pitching_speed, control, stamina) = stat_match_group.groups()
         year_month = f'{year}{month}'
-        id = f'{year_month}_{closest_match_name}_{pitching_speed}{control}{stamina}'
+        id = f'{year_month}_{closest_match_name}'
 
         if id in uuid_set:
             logger.debug('uuid already exists -> same data -> continue')
             continue
 
-        if (year_month in PLAYER_DATE_STAT_ITERATION[closest_match_name]):
-            PLAYER_DATE_STAT_ITERATION[closest_match_name][year_month] += 1
-        else:
-            PLAYER_DATE_STAT_ITERATION[closest_match_name][year_month] = 1
-
         data_dict = {
             'id': id,
             'date': year_month,
-            'iteration': PLAYER_DATE_STAT_ITERATION[closest_match_name][year_month],
             'name': closest_match_name,
             'pitching_speed': pitching_speed,
             'control': control,

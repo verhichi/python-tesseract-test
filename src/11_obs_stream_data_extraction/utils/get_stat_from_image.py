@@ -73,7 +73,7 @@ def get_stat_from_image(image, year, month, uuid_set):
 
         data_dict = {
             'id': id,
-            'date': year_month,
+            'date': f'{year}/{month}',
             'name': closest_match_name,
             'pitching_speed': pitching_speed,
             'control': control,

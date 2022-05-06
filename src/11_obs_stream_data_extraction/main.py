@@ -52,12 +52,12 @@ def main(START_YEAR: int, START_MONTH_NUM: int):
                     logger.debug(f'Checking following frame: {idx}')
 
                     if (match_stat_template(frame)):
-                        logger.debug('Stat Template Matched: TRUE')
                         frame_data_list = get_stat_from_image(
                             frame, CURRENT_YEAR, CURRENT_MONTH_NUM, uuid_set)
+                        logger.info(f'Stat Template Matched at frame: {idx}')
+                        logger.info(f'Matched Data: {frame_data_list}')
                         for frame_data in frame_data_list:
                             writer.writerow(frame_data)
-                        idx = 0
                         continue
                     else:
                         logger.debug('Stat Template Matched: FALSE')
@@ -65,11 +65,11 @@ def main(START_YEAR: int, START_MONTH_NUM: int):
                     matched_month_num = match_month_template(
                         frame, MONTH_MATCH_THRESHOLD)
                     if (matched_month_num is not None):
-                        logger.debug('Month Template Matched: TRUE')
+                        logger.info(f'Month Template Matched frame: {idx}')
+                        logger.info(f'Matched Month: {matched_month_num}')
                         CURRENT_MONTH_NUM = matched_month_num
                         if (matched_month_num == NEW_YEAR_MONTH_NUM):
                             CURRENT_YEAR += 1
-                        idx = 0
                         continue
                     else:
                         logger.debug('Month Template Matched: FALSE')
@@ -81,7 +81,7 @@ def main(START_YEAR: int, START_MONTH_NUM: int):
 
 start = time.process_time()
 logger.debug('START')
-main(2030, 8)
+main(2031, 5)
 end = time.process_time() - start
 logger.debug('END')
 logger.debug(f'Process took: {end} seconds')
